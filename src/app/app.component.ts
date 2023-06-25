@@ -5,7 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DateFilterComponent } from './date-filter/date-filter.component';
 import { Campaign } from './campaign.model';
 import { CAMPAIGNS } from './campaign-data';
-
+import { faXmark, faCheck, faBarsFilter } from '@fortawesome/sharp-solid-svg-icons';
+import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,9 @@ export class AppComponent implements AfterViewInit {
   displayedColumns: string[] = ['name', 'status', 'startDate', 'endDate', 'budget'];
   dataSource: MatTableDataSource<Campaign>;
   data = CAMPAIGNS;
+  faCheck: IconProp = faCheck;
+  faBarsFilter: IconProp = faBarsFilter;
+  faXmark: IconProp = faXmark;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -61,6 +65,8 @@ export class AppComponent implements AfterViewInit {
   {
     this.data = this.data.concat(campaign);
     this.loadData();
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   ngAfterViewInit() {
