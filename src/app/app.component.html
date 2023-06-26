@@ -1,8 +1,7 @@
+<app-header (searchTerm)="applyFilter($event)"></app-header>
+
 <app-date-filter></app-date-filter>
-<mat-form-field>
-  <mat-label>Search</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Search campaign name" #input>
-</mat-form-field>
+
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
 
@@ -50,7 +49,9 @@
 
     <!-- Row shown when there is no matching data. -->
     <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      <!-- <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td> -->
+      <!-- <td class="mat-cell" colspan="4">No data matching the filter</td> -->
+      <td class="mat-cell" colspan="4">No data matching the filter "{{currentFilter}}"</td>
     </tr>
 
   </table>

@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+
+body
+    float: left
+    padding: 0
+    width: 100%
+    margin: 0
+    
+.mat-body, .mat-typography .mat-body-2, .mat-typography
+    min-width: 700px
+
+.mat-cell
+    width: 100%
+
+th.mat-header-cell.mat-sort-header,
+td.mat-cell
+    float: right !important
+    width: 100px !important
+
+th.mat-header-cell.mat-sort-header input,
+td.mat-cell input
+    float: left !important
+    width: 90% !important
+    height: 40px !important
+    margin: 0 !important
+    padding: 0 !important
+    font-family: 'expressway', sans-serif !important
+    font-weight: 300 !important
+    font-size: 13px !important
+    border: none !important
+    outline: none !important
+    overflow: hidden !important
+    transition: width 0.3s !important
+
+th.mat-header-cell.mat-sort-header input.bigger,
+td.mat-cell input.bigger
+    display: none !important
+
+th.mat-header-cell.mat-sort-header,
+td.mat-cell
+    float: none !important
+    width: 100% !important

@@ -33,36 +33,52 @@ export class AppComponent implements AfterViewInit {
     this.loadData();
   }
 
-  loadData()
-  {
+
+  loadData() {
     this.validateDate();
     this.setStatus();
     this.dataSource = new MatTableDataSource(this.data);
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  // applyFilter(event: Event) {
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+
+  //   if (this.dataSource.paginator) {
+  //     this.dataSource.paginator.firstPage();
+  //   }
+  // }
+
+  // applyFilter(filterValue: string) {
+  //   this.dataSource.filter = filterValue;
+
+  //   if (this.dataSource.paginator) {
+  //     this.dataSource.paginator.firstPage();
+  //   }
+  // }
+  currentFilter: string = '';
+
+  applyFilter(filterValue: string) {
+    this.currentFilter = filterValue;
+    this.dataSource.filter = filterValue;
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
 
-  setStatus(){
+  setStatus() {
     this.data = this.data.map(campaign => ({
-      ...campaign, 
+      ...campaign,
       status: new Date() >= new Date(campaign.startDate) && new Date() <= new Date(campaign.endDate) ? 'Active' : 'Inactive'
     }));
   }
 
-  validateDate()
-  {
+  validateDate() {
     this.data = this.data.filter(campaign => campaign.startDate <= campaign.endDate);
   }
 
-  addCampaigns(campaign: Campaign[])
-  {
+  addCampaigns(campaign: Campaign[]) {
     this.data = this.data.concat(campaign);
     this.loadData();
     this.dataSource.paginator = this.paginator;
@@ -82,7 +98,7 @@ export class AppComponent implements AfterViewInit {
           if (start && startDate <= start) {
             return false;
           }
-          
+
           if (end && endDate >= end) {
             return false;
           }

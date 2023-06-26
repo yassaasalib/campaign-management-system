@@ -1,0 +1,6 @@
+<div id="header">
+    <div id="header__input">
+      <fa-icon id="header__input--search" [icon]="faMagnifyingGlass"></fa-icon>
+      <input matInput (keyup)="applyFilter($event)" (focus)="onFocus()" (blur)="onBlur()" placeholder="Search" [ngClass]="{'bigger': isInputFocused}" #input>
+    </div>
+</div>
