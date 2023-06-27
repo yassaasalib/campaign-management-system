@@ -5,7 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DateFilterComponent } from './date-filter/date-filter.component';
 import { Campaign } from './campaign.model';
 import { CAMPAIGNS } from './campaign-data';
-
+import { faXmark, faCheck, faBarsFilter } from '@fortawesome/sharp-solid-svg-icons';
+import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,9 @@ export class AppComponent implements AfterViewInit {
   displayedColumns: string[] = ['name', 'status', 'startDate', 'endDate', 'budget'];
   dataSource: MatTableDataSource<Campaign>;
   data = CAMPAIGNS;
+  faCheck: IconProp = faCheck;
+  faBarsFilter: IconProp = faBarsFilter;
+  faXmark: IconProp = faXmark;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -29,38 +33,50 @@ export class AppComponent implements AfterViewInit {
     this.loadData();
   }
 
-  loadData()
-  {
+
+  loadData() {
     this.validateDate();
     this.setStatus();
     this.dataSource = new MatTableDataSource(this.data);
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  currentFilter: string = '';
+
+  applicationOpen: boolean = false;
+  
+  openApplication() {
+    this.applicationOpen = true;
+  }
+
+  closeApplication() {
+    this.applicationOpen = false;
+  }
+  
+  applyFilter(filterValue: string) {
+    this.currentFilter = filterValue;
+    this.dataSource.filter = filterValue;
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
 
-  setStatus(){
+  setStatus() {
     this.data = this.data.map(campaign => ({
-      ...campaign, 
+      ...campaign,
       status: new Date() >= new Date(campaign.startDate) && new Date() <= new Date(campaign.endDate) ? 'Active' : 'Inactive'
     }));
   }
 
-  validateDate()
-  {
+  validateDate() {
     this.data = this.data.filter(campaign => campaign.startDate <= campaign.endDate);
   }
 
-  addCampaigns(campaign: Campaign[])
-  {
+  addCampaigns(campaign: Campaign[]) {
     this.data = this.data.concat(campaign);
     this.loadData();
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   ngAfterViewInit() {
@@ -76,7 +92,7 @@ export class AppComponent implements AfterViewInit {
           if (start && startDate <= start) {
             return false;
           }
-          
+
           if (end && endDate >= end) {
             return false;
           }
