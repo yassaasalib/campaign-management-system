@@ -40,24 +40,18 @@ export class AppComponent implements AfterViewInit {
     this.dataSource = new MatTableDataSource(this.data);
   }
 
-  // applyFilter(event: Event) {
-  //   const filterValue = (event.target as HTMLInputElement).value;
-  //   this.dataSource.filter = filterValue.trim().toLowerCase();
-
-  //   if (this.dataSource.paginator) {
-  //     this.dataSource.paginator.firstPage();
-  //   }
-  // }
-
-  // applyFilter(filterValue: string) {
-  //   this.dataSource.filter = filterValue;
-
-  //   if (this.dataSource.paginator) {
-  //     this.dataSource.paginator.firstPage();
-  //   }
-  // }
   currentFilter: string = '';
 
+  applicationOpen: boolean = false;
+  
+  openApplication() {
+    this.applicationOpen = true;
+  }
+
+  closeApplication() {
+    this.applicationOpen = false;
+  }
+  
   applyFilter(filterValue: string) {
     this.currentFilter = filterValue;
     this.dataSource.filter = filterValue;
