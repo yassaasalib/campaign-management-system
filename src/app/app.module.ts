@@ -14,15 +14,16 @@ import { HeaderComponent } from './header/header.component'
 import { MatIconModule } from '@angular/material/icon';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    DateFilterComponent,
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -30,7 +31,9 @@ import { MatIconModule } from '@angular/material/icon';
     MatSortModule,
     MatIconModule,
     MatPaginatorModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    DateFilterComponent
+
   ],
   providers: [],
   bootstrap: [
