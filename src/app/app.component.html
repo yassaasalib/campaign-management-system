@@ -1,11 +1,11 @@
 <app-header (searchTerm)="applyFilter($event)"></app-header>
 
 
-<div id="application" [class.show]="applicationOpen">
-  <div id="test">
+<div id="filter-date" [class.show]="applicationOpen">
+  <div id="filter-date__container">
     <app-date-filter (close)="closeApplication()"></app-date-filter>
   </div>
-  <div class="backdrop" (click)="closeApplication()"></div>
+  <div id="backdrop" (click)="closeApplication()"></div>
 </div>
 
 <div class="main">
