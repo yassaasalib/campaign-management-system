@@ -27,6 +27,22 @@ export class AppComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(DateFilterComponent) dateFilterComponent!: DateFilterComponent;
 
+  // currentFilter: string = '';
+
+  applicationOpen: boolean = false;
+
+  openApplication() {
+    this.applicationOpen = true;
+  }
+
+  clearFilter() {
+    this.dateFilterComponent.range.reset();
+  }
+  
+  closeApplication() {
+    this.applicationOpen = false;
+  }
+
   constructor() {
     (window as any)["addCampaigns"] = this.addCampaigns.bind(this);
     this.dataSource = new MatTableDataSource(this.data);
@@ -42,16 +58,16 @@ export class AppComponent implements AfterViewInit {
 
   currentFilter: string = '';
 
-  applicationOpen: boolean = false;
-  
-  openApplication() {
-    this.applicationOpen = true;
-  }
+  // applicationOpen: boolean = false;
 
-  closeApplication() {
-    this.applicationOpen = false;
-  }
-  
+  // openApplication() {
+  //   this.applicationOpen = true;
+  // }
+
+  // closeApplication() {
+  //   this.applicationOpen = false;
+  // }
+
   applyFilter(filterValue: string) {
     this.currentFilter = filterValue;
     this.dataSource.filter = filterValue;
@@ -79,12 +95,35 @@ export class AppComponent implements AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  //   this.dataSource.sort = this.sort;
+
+  //   this.dateFilterComponent.range.valueChanges.subscribe(
+  //     ({ start, end }) => {
+  //       this.dataSource.data = this.data.filter(campaign => {
+  //         let startDate = new Date(campaign.startDate);
+  //         let endDate = new Date(campaign.endDate);
+
+  //         if (start && startDate <= start) {
+  //           return false;
+  //         }
+
+  //         if (end && endDate >= end) {
+  //           return false;
+  //         }
+
+  //         return true;
+  //       })
+  //     }
+  //   )
+  // }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
 
-    this.dateFilterComponent.range.valueChanges.subscribe(
-      ({ start, end }) => {
+    if (this.dateFilterComponent) {
+      this.dateFilterComponent.range.valueChanges.subscribe(({ start, end }) => {
         this.dataSource.data = this.data.filter(campaign => {
           let startDate = new Date(campaign.startDate);
           let endDate = new Date(campaign.endDate);
@@ -92,14 +131,14 @@ export class AppComponent implements AfterViewInit {
           if (start && startDate <= start) {
             return false;
           }
-
           if (end && endDate >= end) {
             return false;
           }
 
           return true;
-        })
-      }
-    )
+        });
+      });
+    }
   }
+
 }

@@ -11,7 +11,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @Component({
   selector: 'app-date-filter',
   templateUrl: './date-filter.component.html',
-  styleUrls: ['date-filter.component.sass'],
+  styleUrls: ['./date-filter.component.sass'],
   standalone: true,
   imports: [
     MatFormFieldModule,
@@ -26,18 +26,17 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 })
 export class DateFilterComponent {
   faXmark: IconProp = faXmark;
-  // faTimes: IconProp = faTimes;
   
-  @Output() closeAppEvent = new EventEmitter<void>();
+  @Output() close: EventEmitter<void> = new EventEmitter<void>();
+
+  closeApplication() {
+    this.close.emit();
+  }
 
   range = new FormGroup({
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
   });
-
-  closeApplication() {
-    this.closeAppEvent.emit();
-  }
 
   clearFilter() {
     this.range.reset();

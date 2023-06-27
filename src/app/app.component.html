@@ -1,10 +1,11 @@
 <app-header (searchTerm)="applyFilter($event)"></app-header>
 
-<div id="application" (closeAppEvent)="closeApplication()" *ngIf="applicationOpen">
+
+<div id="application" [class.show]="applicationOpen">
   <div id="test">
-    <app-date-filter></app-date-filter>
+    <app-date-filter (close)="closeApplication()"></app-date-filter>
   </div>
-  <div class="backdrop"></div>
+  <div class="backdrop" (click)="closeApplication()"></div>
 </div>
 
 <div class="main">
@@ -13,6 +14,7 @@
       (click)="openApplication()">
       <mat-icon>filter_list</mat-icon>
     </button>
+    <h4 (click)="clearFilter()">Clear</h4>
   </div>
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
@@ -68,4 +70,5 @@
 
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
   </div>
+
 </div>
