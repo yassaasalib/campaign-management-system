@@ -22,14 +22,13 @@ export class AppComponent implements AfterViewInit {
   faCheck: IconProp = faCheck;
   faBarsFilter: IconProp = faBarsFilter;
   faXmark: IconProp = faXmark;
+  currentFilter: string = '';
+  applicationOpen: boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(DateFilterComponent) dateFilterComponent!: DateFilterComponent;
 
-  // currentFilter: string = '';
-
-  applicationOpen: boolean = false;
 
   openApplication() {
     this.applicationOpen = true;
@@ -55,18 +54,6 @@ export class AppComponent implements AfterViewInit {
     this.setStatus();
     this.dataSource = new MatTableDataSource(this.data);
   }
-
-  currentFilter: string = '';
-
-  // applicationOpen: boolean = false;
-
-  // openApplication() {
-  //   this.applicationOpen = true;
-  // }
-
-  // closeApplication() {
-  //   this.applicationOpen = false;
-  // }
 
   applyFilter(filterValue: string) {
     this.currentFilter = filterValue;

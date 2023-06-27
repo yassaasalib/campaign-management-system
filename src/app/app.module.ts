@@ -13,8 +13,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeaderComponent } from './header/header.component'
 import { MatIconModule } from '@angular/material/icon';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
