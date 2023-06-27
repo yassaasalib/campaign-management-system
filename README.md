@@ -1,27 +1,77 @@
-# CampaignManagementSystem
+Campaign Management System
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.3.
+The Campaign Management System is a web application built with Angular. It allows users to manage and track marketing campaigns, including their names, start dates, end dates, and budgets.
+Features
 
-## Development server
+    Display a list of campaigns with their details
+    Filter campaigns based on name, status, start date, end date, and budget
+    Sort campaigns by different columns
+    Add new campaigns to the list
+    Search campaigns by name
+    Validate campaign dates
+    Show the status of each campaign based on the current date
+    Clear filters and search input
+    Responsive design for different screen sizes
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Getting Started
+Prerequisites
 
-## Code scaffolding
+Before running the application, make sure you have the following software installed:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+    Node.js: Download & Install Node.js
+    Angular CLI: Install the Angular CLI globally by running npm install -g @angular/cli
 
-## Build
+Installation
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+    Clone the repository:
 
-## Running unit tests
+bash
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+git clone https://github.com/your-username/campaign-management-system.git
 
-## Running end-to-end tests
+    Navigate to the project's root directory:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+bash
 
-## Further help
+cd campaign-management-system
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+    Install the dependencies:
+
+bash
+
+npm install
+
+Development Server
+
+Run the following command to start the development server:
+
+bash
+
+ng serve
+
+Navigate to http://localhost:4200/ in your web browser to access the application. The app will automatically reload if you change any of the source files.
+Build
+
+To build the project, run the following command:
+
+bash
+
+ng build
+
+The build artifacts will be stored in the dist/ directory. Use the --prod flag for a production build.
+Running Unit Tests
+
+To execute the unit tests via Karma, run the following command:
+
+bash
+
+ng test
+
+This will run the unit tests and display the test results in the terminal.
+Technologies Used
+
+The Campaign Management System is built using the following technologies:
+
+    Angular: A TypeScript-based web application framework.
+    Angular Material: A UI component library for Angular applications.
+    FontAwesome: An icon library for web projects.
